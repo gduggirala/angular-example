@@ -1,0 +1,13 @@
+<div>
+    <label name="taskN">Task title</label> : <input #title type="text"> <br />
+    <label name="taskD">Task content</label> :<input #content type="text"> <br />
+    <button (click)="addTask(title.value,content.value)">Add Task</button>
+    <br />
+    <label name="taskL"><strong>Task List</strong> </label>
+    
+    <ul *ngFor='let task of tasks'>
+            <li>{{ task.title }}</li>
+            <p>{{ task.content }}</p>
+        </ul>
+
+</div>
