@@ -11,6 +11,7 @@ export class TaskService {
   constructor(private http: HttpClient) { }
   private getUrl = 'http://localhost:8080/api/task/list';
   private createUrl = 'http://localhost:8080/api/task';
+  private updateUrl = 'http://localhost:8080/api/task';
 
   getTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.getUrl);
@@ -23,5 +24,15 @@ export class TaskService {
       })
     };
     return this.http.post<ITask>(this.createUrl, task, httpOptions);
+  }
+
+  completeTask(task: ITask): Observable<ITask> {
+    task.isActive = false;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };
+    return this.http.put<ITask>(this.createUrl, task, httpOptions);
   }
 }

@@ -1,0 +1,18 @@
+<div>
+        <ul *ngFor='let task of tasks'>
+                <li>
+                        <div ngif="!task.isActive;">
+                                <input type="checkbox" (click)="completeTask(task)" [(ngModel)]="task.isActive">
+                        </div> {{ task.title }}
+                </li>
+
+                <div *ngIf="!task.isActive;then thenBlock; else elseBlock "></div>
+                <ng-template #thenBlock>
+                        <p><s>{{ task.content }}</s></p>
+                </ng-template>
+                <ng-template #elseBlock>
+                        <p>{{ task.content }}</p>
+                </ng-template>
+
+        </ul>
+</div>
